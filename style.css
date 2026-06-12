@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F6F9;
+    color: #1A2C3E;
+}
+
+.top-bar {
+    background: #0A2B3E;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 3px solid #3498DB;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: #3498DB;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon i { font-size: 1.6rem; color: #0A2B3E; }
+.logo-text h1 { font-size: 1.3rem; color: white; letter-spacing: -0.5px; }
+.logo-text p { font-size: 0.65rem; color: #A0C4D6; }
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: #E0E7EC;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: 0.2s;
+    padding: 20px 8px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: #3498DB;
+    border-bottom-color: #3498DB;
+}
+
+.periodo-badge {
+    background: #3498DB;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 32px;
+}
+
+.hero-banner {
+    background: linear-gradient(135deg, #0E3B4F 0%, #1A5A74 100%);
+    border-radius: 24px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hero-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+.hero-sub { font-size: 0.8rem; opacity: 0.85; }
+.hero-stats { display: flex; gap: 32px; }
+.hero-stat { text-align: center; }
+.hero-stat .number { font-size: 1.8rem; font-weight: 800; color: #3498DB; }
+.hero-stat .label { font-size: 0.7rem; opacity: 0.8; }
+
+.ranking-card {
+    background: white;
+    border-radius: 24px;
+    overflow-x: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    margin-bottom: 32px;
+}
+
+.ranking-header {
+    background: #0A2B3E;
+    color: white;
+    padding: 18px 24px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.ranking-table th {
+    text-align: left;
+    padding: 14px 16px;
+    background: #F8FAFE;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #2C3E50;
+    border-bottom: 1px solid #E9EEF4;
+}
+
+.ranking-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #EDF2F7;
+    vertical-align: middle;
+}
+
+/* Linhas coloridas do ranking */
+.ranking-table tr.posicao-1 { background: linear-gradient(90deg, #E8F4FD 0%, #FFFFFF 70%); border-left: 4px solid #3498DB; }
+.ranking-table tr.posicao-2 { background: linear-gradient(90deg, #F5F5F5 0%, #FFFFFF 70%); border-left: 4px solid #A0A0A0; }
+.ranking-table tr.posicao-3 { background: linear-gradient(90deg, #FFF5EB 0%, #FFFFFF 70%); border-left: 4px solid #CD7F32; }
+
+.posicao { font-weight: 800; font-size: 1.1rem; width: 60px; }
+.posicao-ouro { color: #3498DB; }
+.posicao-prata { color: #A0A0A0; }
+.posicao-bronze { color: #CD7F32; }
+
+/* Badges com as cores corretas */
+.badge-regular { background: #FDEDEC; color: #E74C3C; border-left: 3px solid #E74C3C; }
+.badge-suficiente { background: #FEF5E7; color: #F39C12; border-left: 3px solid #F39C12; }
+.badge-bom { background: #E9F7EF; color: #27AE60; border-left: 3px solid #27AE60; }
+.badge-otimo { background: #E8F4FD; color: #3498DB; border-left: 3px solid #3498DB; }
+
+.progress-bar-bg { background: #ECF0F1; border-radius: 20px; height: 8px; width: 120px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 20px; width: 0%; }
+.fill-regular { background: #E74C3C; }
+.fill-suficiente { background: #F39C12; }
+.fill-bom { background: #27AE60; }
+.fill-otimo { background: #3498DB; }
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid;
+    transition: transform 0.2s;
+}
+
+.info-card:hover { transform: translateY(-3px); }
+.info-card.ouro { border-left-color: #3498DB; }
+.info-card.prata { border-left-color: #A0A0A0; }
+.info-card.bronze { border-left-color: #CD7F32; }
+
+.card-value { font-size: 1.8rem; font-weight: 800; margin: 8px 0; color: #0A2B3E; }
+.card-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #6C7A89; }
+
+.detalhe-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.detalhe-table th {
+    text-align: left;
+    padding: 12px 12px;
+    background: #F8FAFE;
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: #2C3E50;
+    border-bottom: 1px solid #E9EEF4;
+}
+
+.detalhe-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid #EDF2F7;
+    vertical-align: middle;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 32px;
+}
+
+.chart-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border-left: 4px solid #3498DB;
+    padding-left: 14px;
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #E0E6ED;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    background: #ECF0F1;
+    color: #2C3E50;
+}
+
+.btn-primary { background: #3498DB; color: white; }
+.btn-primary:hover { background: #2980B9; }
+.btn:hover { transform: translateY(-2px); }
+
+@media (max-width: 780px) {
+    .top-bar { flex-direction: column; padding: 12px 20px; }
+    .nav-menu { justify-content: center; gap: 12px; }
+    .main-container { padding: 20px; }
+    .hero-banner { flex-direction: column; text-align: center; gap: 16px; }
+    .hero-stats { justify-content: center; }
+}
