@@ -1,680 +1,565 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard APS · Assunção do Piauí</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APS · Assunção do Piauí</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
 
-    body {
-      background: #f4f7fc;
-      padding: 24px;
-      color: #1e293b;
-    }
+        body {
+            background: #f4f7fc;
+            padding: 24px;
+            color: #1e293b;
+        }
 
-    .dashboard {
-      max-width: 1440px;
-      margin: 0 auto;
-    }
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    /* cabeçalho */
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      padding: 20px 28px;
-      border-radius: 28px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,20,50,0.04);
-      margin-bottom: 28px;
-    }
+        /* cabeçalho */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px 28px;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,20,50,0.04);
+            margin-bottom: 28px;
+        }
 
-    .header-left h1 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      color: #0b2b4a;
-    }
+        .header-left h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0b2b4a;
+        }
 
-    .header-left h1 i {
-      color: #2a7de1;
-      margin-right: 10px;
-    }
+        .header-left h1 i {
+            color: #2a7de1;
+            margin-right: 10px;
+        }
 
-    .header-left .sub {
-      font-size: 14px;
-      color: #64748b;
-      margin-top: 4px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+        .header-left .sub {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 4px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
 
-    .header-right {
-      background: #eef4ff;
-      padding: 10px 18px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 15px;
-      color: #1a4c7a;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
-    }
+        .header-right {
+            background: #eef4ff;
+            padding: 10px 18px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a4c7a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
 
-    .header-right i {
-      color: #2a7de1;
-    }
+        .header-right i {
+            color: #2a7de1;
+        }
 
-    /* ALERTAS em destaque */
-    .alertas-destaque {
-      background: #fef3e9;
-      border: 2px solid #f5b342;
-      border-radius: 28px;
-      padding: 18px 28px;
-      margin-bottom: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 6px 14px rgba(245, 179, 66, 0.12);
-    }
+        /* ALERTAS em destaque */
+        .alertas-destaque {
+            background: #fef3e9;
+            border: 2px solid #f5b342;
+            border-radius: 28px;
+            padding: 18px 28px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 14px rgba(245, 179, 66, 0.12);
+        }
 
-    .alertas-destaque .alert-icon {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 18px;
-      color: #7a4d0e;
-    }
+        .alertas-destaque .alert-icon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            color: #7a4d0e;
+        }
 
-    .alertas-destaque .alert-icon i {
-      font-size: 28px;
-      color: #d97706;
-    }
+        .alertas-destaque .alert-icon i {
+            font-size: 28px;
+            color: #d97706;
+        }
 
-    .alertas-destaque .alert-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 24px;
-      font-size: 15px;
-      font-weight: 500;
-      color: #4b2e0a;
-    }
+        .alertas-destaque .alert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #4b2e0a;
+        }
 
-    .alertas-destaque .alert-list span {
-      background: white;
-      padding: 4px 16px;
-      border-radius: 60px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .alertas-destaque .alert-list span {
+            background: white;
+            padding: 4px 16px;
+            border-radius: 60px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .alertas-destaque .alert-list i {
-      color: #b45309;
-    }
+        .alertas-destaque .alert-list i {
+            color: #b45309;
+        }
 
-    .alertas-destaque .alert-badge {
-      background: #d97706;
-      color: white;
-      padding: 6px 18px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 14px;
-    }
+        .alertas-destaque .alert-badge {
+            background: #d97706;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 14px;
+        }
 
-    /* ranking */
-    .ranking-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-bottom: 32px;
-    }
+        /* seção de equipes */
+        .categoria-section {
+            background: white;
+            border-radius: 28px;
+            padding: 24px 28px 28px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f7;
+            margin-bottom: 28px;
+        }
 
-    .rank-card {
-      background: white;
-      padding: 18px 16px 16px 16px;
-      border-radius: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      border: 1px solid #e9eef3;
-      transition: all 0.1s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        .categoria-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #eef2f7;
+        }
 
-    .rank-card .rank-info {
-      display: flex;
-      flex-direction: column;
-    }
+        .categoria-header .categoria-titulo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a5f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .rank-card .rank-pos {
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      letter-spacing: 0.3px;
-    }
+        .categoria-header .categoria-titulo i {
+            color: #2a7de1;
+        }
 
-    .rank-card .rank-name {
-      font-weight: 700;
-      font-size: 18px;
-      color: #0b2b4a;
-    }
+        .categoria-header .categoria-sub {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+            margin-left: 8px;
+        }
 
-    .rank-card .rank-score {
-      font-size: 24px;
-      font-weight: 700;
-      color: #0b2b4a;
-      background: #f1f6fd;
-      padding: 4px 14px;
-      border-radius: 60px;
-      display: inline-block;
-    }
+        /* tabela de indicadores em linha */
+        .indicadores-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
 
-    .rank-card .rank-badge {
-      font-size: 13px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 60px;
-      background: #d1e6f9;
-      color: #1a5a8c;
-    }
+        .indicadores-table thead th {
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            padding: 8px 12px 10px 12px;
+            border-bottom: 2px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 8px 8px 0 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
 
-    .rank-card.ouro {
-      border-left: 6px solid #f5b342;
-    }
-    .rank-card.prata {
-      border-left: 6px solid #b0c4de;
-    }
-    .rank-card.bronze {
-      border-left: 6px solid #cd7f32;
-    }
-    .rank-card.suficiente {
-      border-left: 6px solid #f1c40f;
-    }
+        .indicadores-table tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
 
-    /* grid 2 colunas */
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 28px;
-    }
+        .indicadores-table tbody tr:last-child td {
+            border-bottom: none;
+        }
 
-    @media (max-width: 900px) {
-      .grid-2col {
-        grid-template-columns: 1fr;
-      }
-    }
+        .indicadores-table tbody tr:hover {
+            background: #f8fafc;
+        }
 
-    .card {
-      background: white;
-      border-radius: 28px;
-      padding: 20px 24px 24px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.02);
-      border: 1px solid #eef2f7;
-    }
+        .indicadores-table .equipe-nome {
+            font-weight: 700;
+            color: #0b2b4a;
+            white-space: nowrap;
+        }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      border-bottom: 1px solid #ecf1f7;
-      padding-bottom: 12px;
-    }
+        .indicadores-table .equipe-tipo-badge {
+            font-size: 11px;
+            font-weight: 600;
+            background: #e9edf3;
+            padding: 2px 10px;
+            border-radius: 40px;
+            color: #475569;
+            margin-left: 8px;
+            display: inline-block;
+        }
 
-    .card-header h3 {
-      font-weight: 600;
-      font-size: 18px;
-      color: #1e3a5f;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .indicadores-table .nota-cell {
+            font-weight: 700;
+            color: #0b2b4a;
+            background: #f1f6fd;
+            padding: 2px 14px;
+            border-radius: 60px;
+            display: inline-block;
+            font-size: 14px;
+        }
 
-    .card-header h3 i {
-      color: #2a7de1;
-      font-size: 18px;
-    }
+        /* cores oficiais MS */
+        .status-otimo {
+            color: #005ea5;
+            background: #d4e6f7;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            display: inline-block;
+            white-space: nowrap;
+        }
 
-    .badge-status {
-      font-size: 13px;
-      background: #e9f0fa;
-      padding: 4px 12px;
-      border-radius: 40px;
-      color: #1f4e7a;
-      font-weight: 500;
-    }
+        .status-bom {
+            color: #006837;
+            background: #d4edda;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            display: inline-block;
+            white-space: nowrap;
+        }
 
-    .table-mini {
-      width: 100%;
-      font-size: 14px;
-      border-collapse: collapse;
-    }
+        .status-suficiente {
+            color: #b76e0a;
+            background: #fde8d0;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            display: inline-block;
+            white-space: nowrap;
+        }
 
-    .table-mini th {
-      text-align: left;
-      font-weight: 600;
-      color: #475569;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #e2e8f0;
-    }
+        .status-regular {
+            color: #c8102e;
+            background: #f8d7da;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            display: inline-block;
+            white-space: nowrap;
+        }
 
-    .table-mini td {
-      padding: 8px 0;
-      border-bottom: 1px solid #f1f5f9;
-    }
+        .legenda-cores {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #eef2f7;
+            justify-content: center;
+        }
 
-    .table-mini tr:last-child td {
-      border-bottom: none;
-    }
+        .legenda-cores span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
 
-    .score-tag {
-      font-weight: 600;
-      background: #f1f6fd;
-      padding: 2px 12px;
-      border-radius: 30px;
-      font-size: 13px;
-    }
+        .legenda-cores .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+        }
 
-    /* CORES OFICIAIS MS */
-    .status-otimo {
-      color: #005ea5;
-      background: #d4e6f7;
-      padding: 0 12px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 12px;
-      display: inline-block;
-    }
+        .dot-otimo { background: #005ea5; }
+        .dot-bom { background: #006837; }
+        .dot-suficiente { background: #b76e0a; }
+        .dot-regular { background: #c8102e; }
 
-    .status-bom {
-      color: #006837;
-      background: #d4edda;
-      padding: 0 12px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 12px;
-      display: inline-block;
-    }
+        .badge-equipe {
+            background: #e9edf3;
+            border-radius: 30px;
+            padding: 1px 12px;
+            font-weight: 600;
+            font-size: 11px;
+            color: #475569;
+        }
 
-    .status-suficiente {
-      color: #b76e0a;
-      background: #fde8d0;
-      padding: 0 12px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 12px;
-      display: inline-block;
-    }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: start;
+                gap: 12px;
+            }
+            .alertas-destaque {
+                flex-direction: column;
+                align-items: start;
+                gap: 12px;
+            }
+            .indicadores-table {
+                font-size: 12px;
+            }
+            .indicadores-table thead th,
+            .indicadores-table tbody td {
+                padding: 6px 8px;
+            }
+            .categoria-section {
+                padding: 16px;
+            }
+        }
 
-    .status-regular {
-      color: #c8102e;
-      background: #f8d7da;
-      padding: 0 12px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 12px;
-      display: inline-block;
-    }
-
-    .flex-between {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mt-2 { margin-top: 12px; }
-
-    .destaques {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 20px;
-      margin: 10px 0 6px;
-    }
-
-    .destaque-item {
-      background: #f8faff;
-      padding: 8px 16px 8px 12px;
-      border-radius: 50px;
-      font-size: 14px;
-      border: 1px solid #e6edf6;
-    }
-
-    .destaque-item i {
-      margin-right: 8px;
-      color: #2a7de1;
-    }
-
-    .atencao-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .atencao-item {
-      background: #fef9f0;
-      padding: 10px 16px;
-      border-radius: 20px;
-      border-left: 5px solid #f5b342;
-      font-size: 14px;
-    }
-
-    .atencao-item strong {
-      color: #7a4d0e;
-    }
-
-    .badge-equipe {
-      background: #dce6f0;
-      border-radius: 30px;
-      padding: 1px 12px;
-      font-weight: 600;
-      font-size: 12px;
-    }
-
-    .flex {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .footer-note {
-      background: white;
-      border-radius: 28px;
-      padding: 18px 28px;
-      margin-top: 24px;
-      border: 1px solid #eef2f7;
-      font-size: 14px;
-      color: #334155;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-note i {
-      color: #2a7de1;
-    }
-
-    .legenda-cores {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .legenda-cores span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .legenda-cores .dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .dot-otimo { background: #005ea5; }
-    .dot-bom { background: #006837; }
-    .dot-suficiente { background: #b76e0a; }
-    .dot-regular { background: #c8102e; }
-
-    @media (max-width: 500px) {
-      .header {
-        flex-direction: column;
-        align-items: start;
-        gap: 12px;
-      }
-      .ranking-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .alertas-destaque {
-        flex-direction: column;
-        align-items: start;
-        gap: 12px;
-      }
-    }
-  </style>
+        @media (max-width: 600px) {
+            .indicadores-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="dashboard">
-  <!-- header -->
-  <div class="header">
-    <div class="header-left">
-      <h1><i class="fas fa-heartbeat"></i> APS · Assunção do Piauí</h1>
-      <div class="sub">
-        <span><i class="far fa-calendar-alt"></i> 2º Quadrimestre 2026</span>
-        <span><i class="fas fa-flag"></i> Relatório Novo Financiamento</span>
-      </div>
-    </div>
-    <div class="header-right">
-      <i class="fas fa-chart-line"></i> 3 equipes com nota máxima
-    </div>
-  </div>
 
-  <!-- ⚠️ ALERTAS EM DESTAQUE -->
-  <div class="alertas-destaque" id="alertasDestaque">
-    <div class="alert-icon">
-      <i class="fas fa-exclamation-triangle"></i>
-      <span>Alertas prioritários</span>
-      <span class="alert-badge">4 itens</span>
-    </div>
-    <div class="alert-list">
-      <span><i class="fas fa-child"></i> Desenv. Infantil: todas <span class="status-suficiente" style="font-size:13px;">SUFICIENTE</span></span>
-      <span><i class="fas fa-female"></i> Mulheres: Lageiro Branco <span class="status-suficiente" style="font-size:13px;">SUFICIENTE</span></span>
-      <span><i class="fas fa-tooth"></i> ESB Teteu: 3 indicadores <span class="status-regular" style="font-size:13px;">REGULAR</span></span>
-      <span><i class="fas fa-tooth"></i> ESB Assunção / Santa T. : exodontia <span class="status-regular" style="font-size:13px;">REGULAR</span></span>
-    </div>
-  </div>
-
-  <!-- ranking cards -->
-  <div class="ranking-grid" id="rankingContainer"></div>
-
-  <!-- grid 2 colunas: destaques + atenção -->
-  <div class="grid-2col">
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fas fa-star" style="color: #f5b342;"></i> Destaques positivos</h3>
-        <span class="badge-status">4 indicadores</span>
-      </div>
-      <div class="destaques">
-        <div class="destaque-item"><i class="fas fa-check-circle" style="color:#006837;"></i> 3 equipes nota 10,0</div>
-        <div class="destaque-item"><i class="fas fa-check-circle" style="color:#006837;"></i> Diabetes: 4/4 <span class="status-otimo" style="font-size:12px;">ÓTIMO</span></div>
-        <div class="destaque-item"><i class="fas fa-check-circle" style="color:#006837;"></i> Mais Acesso: 3 <span class="status-otimo" style="font-size:12px;">ÓTIMO</span></div>
-        <div class="destaque-item"><i class="fas fa-check-circle" style="color:#006837;"></i> Hipertensão: 3 <span class="status-otimo" style="font-size:12px;">ÓTIMO</span></div>
-      </div>
-      <div style="margin-top: 16px; background:#f2f8ff; border-radius: 20px; padding: 16px;">
-        <div style="display: flex; justify-content: space-between; font-weight: 500; color: #1e3a5f;">
-          <span><i class="fas fa-users"></i> Equipe com melhor desempenho</span>
-          <span>Teteu · Assunção · Santa Teresinha</span>
+    <!-- cabeçalho -->
+    <div class="header">
+        <div class="header-left">
+            <h1><i class="fas fa-heartbeat"></i> APS · Assunção do Piauí</h1>
+            <div class="sub">
+                <span><i class="far fa-calendar-alt"></i> 2º Quadrimestre 2026</span>
+                <span><i class="fas fa-flag"></i> Relatório Novo Financiamento</span>
+            </div>
         </div>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; font-size: 14px;">
-          <span><i class="fas fa-child" style="color:#2a7de1;"></i> Desenv. Infantil: todas <span class="status-suficiente" style="font-size:12px;">SUFICIENTE</span></span>
-          <span><i class="fas fa-female" style="color:#2a7de1;"></i> Mulheres: 3 <span class="status-bom" style="font-size:12px;">BOM</span>, 1 <span class="status-suficiente" style="font-size:12px;">SUFICIENTE</span></span>
+        <div class="header-right">
+            <i class="fas fa-chart-line"></i> 3 equipes com nota máxima
         </div>
-      </div>
     </div>
 
-    <!-- coluna direita: pontos de atenção -->
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fas fa-exclamation-triangle" style="color:#d97706;"></i> Indicadores com atenção</h3>
-        <span class="badge-status">Saúde Bucal</span>
-      </div>
-      <div class="atencao-grid">
-        <div class="atencao-item">
-          <strong><i class="fas fa-tooth"></i> ESB Teteu</strong> 
-          <span class="badge-equipe" style="background:#f8d7da; color:#c8102e;">REGULAR</span> 1ª consulta, escovação, preventivos
+    <!-- ⚠️ ALERTAS EM DESTAQUE -->
+    <div class="alertas-destaque">
+        <div class="alert-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Alertas prioritários</span>
+            <span class="alert-badge">4 itens</span>
         </div>
-        <div class="atencao-item">
-          <strong><i class="fas fa-tooth"></i> ESB Assunção</strong> 
-          <span class="badge-equipe" style="background:#f8d7da; color:#c8102e;">REGULAR</span> taxa de exodontia
+        <div class="alert-list">
+            <span><i class="fas fa-child"></i> Desenv. Infantil: todas <span class="status-suficiente" style="font-size:12px;">SUFICIENTE</span></span>
+            <span><i class="fas fa-female"></i> Mulheres: Lageiro Branco <span class="status-suficiente" style="font-size:12px;">SUFICIENTE</span></span>
+            <span><i class="fas fa-tooth"></i> ESB Teteu: 3 indicadores <span class="status-regular" style="font-size:12px;">REGULAR</span></span>
+            <span><i class="fas fa-tooth"></i> ESB Assunção / Santa T. : exodontia <span class="status-regular" style="font-size:12px;">REGULAR</span></span>
         </div>
-        <div class="atencao-item">
-          <strong><i class="fas fa-tooth"></i> ESB Santa Teresinha</strong> 
-          <span class="badge-equipe" style="background:#f8d7da; color:#c8102e;">REGULAR</span> tratamento concluído, exodontia
-        </div>
-        <div class="atencao-item" style="border-left-color: #b76e0a; background: #fde8d0;">
-          <strong><i class="fas fa-baby"></i> Desenvolvimento Infantil</strong> todas as equipes: <span class="status-suficiente" style="font-size:13px;">SUFICIENTE</span>
-        </div>
-        <div class="atencao-item" style="border-left-color: #b76e0a; background: #fde8d0;">
-          <strong><i class="fas fa-female"></i> Mulheres</strong> Lageiro Branco: <span class="status-suficiente" style="font-size:13px;">SUFICIENTE</span>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- tabela completa -->
-  <div class="card" style="margin-top: 4px;">
-    <div class="card-header">
-      <h3><i class="fas fa-table"></i> Indicadores por equipe</h3>
-      <span class="badge-status">Componentes II e III</span>
+    <!-- ==================== eSF ==================== -->
+    <div class="categoria-section">
+        <div class="categoria-header">
+            <div class="categoria-titulo">
+                <i class="fas fa-user-md"></i> eSF
+                <span class="categoria-sub">Equipes Saúde da Família</span>
+            </div>
+        </div>
+        <table class="indicadores-table">
+            <thead>
+                <tr>
+                    <th>Equipe</th>
+                    <th>Cadastros</th>
+                    <th>Acompanhamento</th>
+                    <th>Nota Final</th>
+                    <th>Mais Acesso</th>
+                    <th>Desenv. Infantil</th>
+                    <th>Gestante</th>
+                    <th>Diabetes</th>
+                    <th>Hipertensão</th>
+                    <th>Idoso</th>
+                    <th>Mulheres</th>
+                </tr>
+            </thead>
+            <tbody id="esfBody"></tbody>
+        </table>
     </div>
-    <div style="overflow-x: auto;">
-      <table class="table-mini" id="mainTable">
-        <thead>
-          <tr><th>Equipe</th><th>Cad.</th><th>Acomp.</th><th>Final</th><th>Mais Acesso</th><th>Desenv. Infantil</th><th>Gestante</th><th>Diabetes</th><th>Hipertensão</th><th>Idoso</th><th>Mulheres</th></tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
-    </div>
-    <div style="margin-top: 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: #f8fafc; padding: 12px 16px; border-radius: 40px;">
-      <div class="legenda-cores">
-        <span><span class="dot dot-otimo"></span> ÓTIMO</span>
-        <span><span class="dot dot-bom"></span> BOM</span>
-        <span><span class="dot dot-suficiente"></span> SUFICIENTE</span>
-        <span><span class="dot dot-regular"></span> REGULAR</span>
-      </div>
-      <span style="font-size: 13px; color: #475569;"><i class="far fa-clock"></i> Dados do 2º quadrimestre 2026</span>
-    </div>
-  </div>
 
-  <!-- footer -->
-  <div class="footer-note">
-    <span><i class="fas fa-bullseye" style="color: #b45309;"></i> Prioridades: acompanhamento infantil · cadastros · saúde bucal</span>
-    <span><i class="fas fa-arrow-up" style="color:#006837;"></i> Manter diabetes, hipertensão, idoso</span>
-  </div>
+    <!-- ==================== eSB ==================== -->
+    <div class="categoria-section">
+        <div class="categoria-header">
+            <div class="categoria-titulo">
+                <i class="fas fa-tooth"></i> eSB
+                <span class="categoria-sub">Equipes Saúde Bucal</span>
+            </div>
+        </div>
+        <table class="indicadores-table">
+            <thead>
+                <tr>
+                    <th>Equipe</th>
+                    <th>1ª Consulta</th>
+                    <th>Trat. Concluído</th>
+                    <th>Taxa Exodontia</th>
+                    <th>Escov. Supervisionada</th>
+                    <th>Proc. Preventivos</th>
+                    <th>Trat. Atraumático</th>
+                </tr>
+            </thead>
+            <tbody id="esbBody"></tbody>
+        </table>
+    </div>
+
+    <!-- ==================== eMulti ==================== -->
+    <div class="categoria-section">
+        <div class="categoria-header">
+            <div class="categoria-titulo">
+                <i class="fas fa-hand-holding-heart"></i> eMulti
+                <span class="categoria-sub">Equipe Multiprofissional</span>
+            </div>
+        </div>
+        <table class="indicadores-table">
+            <thead>
+                <tr>
+                    <th>Equipe</th>
+                    <th>Média Atend./Cidadão</th>
+                    <th>Ações Interprofissionais</th>
+                </tr>
+            </thead>
+            <tbody id="emultiBody"></tbody>
+        </table>
+    </div>
+
+    <!-- legenda -->
+    <div style="background: white; border-radius: 28px; padding: 16px 24px; border: 1px solid #eef2f7;">
+        <div class="legenda-cores">
+            <span><span class="dot dot-otimo"></span> ÓTIMO</span>
+            <span><span class="dot dot-bom"></span> BOM</span>
+            <span><span class="dot dot-suficiente"></span> SUFICIENTE</span>
+            <span><span class="dot dot-regular"></span> REGULAR</span>
+            <span style="margin-left: 16px; color: #64748b;"><i class="far fa-clock"></i> Dados do 2º quadrimestre 2026</span>
+        </div>
+    </div>
+
 </div>
 
 <script>
-  (function() {
-    // Dados extraídos do relatório
-    const equipes = [
-      { 
-        nome: 'Teteu', ine: '0000065358', 
-        cad: 3.00, acomp: 7.00, final: 10.00, classFinal: 'ÓTIMO',
-        maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM',
-        diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM'
-      },
-      { 
-        nome: 'Assunção', ine: '0000065366',
-        cad: 3.00, acomp: 7.00, final: 10.00, classFinal: 'ÓTIMO',
-        maisAcesso: 'BOM', desenv: 'SUFICIENTE', gestante: 'ÓTIMO',
-        diabetes: 'ÓTIMO', hipertensao: 'BOM', idoso: 'BOM', mulheres: 'BOM'
-      },
-      { 
-        nome: 'Santa Teresinha', ine: '0001502131',
-        cad: 3.00, acomp: 7.00, final: 10.00, classFinal: 'ÓTIMO',
-        maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM',
-        diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM'
-      },
-      { 
-        nome: 'Lageiro Branco', ine: '0000065382',
-        cad: 2.25, acomp: 3.50, final: 5.75, classFinal: 'SUFICIENTE',
-        maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM',
-        diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'SUFICIENTE'
-      }
-    ];
+    (function() {
+        // Dados eSF
+        const esfData = [
+            { nome: 'Teteu', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
+            { nome: 'Assunção', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'BOM', desenv: 'SUFICIENTE', gestante: 'ÓTIMO', diabetes: 'ÓTIMO', hipertensao: 'BOM', idoso: 'BOM', mulheres: 'BOM' },
+            { nome: 'Santa Teresinha', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
+            { nome: 'Lageiro Branco', cad: '2,25', acomp: '3,50', nota: '5,75', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'SUFICIENTE' }
+        ];
 
-    // ranking
-    const sorted = [...equipes].sort((a,b) => b.final - a.final);
-    const rankContainer = document.getElementById('rankingContainer');
-    function renderRanking() {
-      rankContainer.innerHTML = '';
-      sorted.forEach((eq, idx) => {
-        const card = document.createElement('div');
-        card.className = 'rank-card';
-        if (eq.classFinal === 'ÓTIMO') {
-          if (idx === 0) card.classList.add('ouro');
-          else if (idx === 1) card.classList.add('prata');
-          else if (idx === 2) card.classList.add('bronze');
-        } else {
-          card.classList.add('suficiente');
-        }
-        let pos = '';
-        if (idx === 0) pos = '🥇';
-        else if (idx === 1) pos = '🥈';
-        else if (idx === 2) pos = '🥉';
-        else pos = `#${idx+1}`;
+        // Dados eSB
+        const esbData = [
+            { nome: 'ESB Assunção', consulta: '4,31%', tratConcluido: '88,16%', exodontia: '1,14%', escovacao: '39,13%', preventivos: '67,35%', atraumático: '82,96%' },
+            { nome: 'ESB Teteu', consulta: '0,09%', tratConcluido: '350,00%', exodontia: '9,52%', escovacao: '0,00%', preventivos: '23,81%', atraumático: '46,15%' },
+            { nome: 'ESB Lageiro Branco', consulta: '0,75%', tratConcluido: '50,00%', exodontia: '2,17%', escovacao: '14,73%', preventivos: '79,22%', atraumático: '61,54%' },
+            { nome: 'ESB Santa Teresinha', consulta: '4,16%', tratConcluido: '10,59%', exodontia: '0,14%', escovacao: '22,71%', preventivos: '71,40%', atraumático: '27,80%' }
+        ];
 
-        // badge com cor oficial
-        let badgeClass = 'status-otimo';
-        if (eq.classFinal === 'BOM') badgeClass = 'status-bom';
-        else if (eq.classFinal === 'SUFICIENTE') badgeClass = 'status-suficiente';
-        else if (eq.classFinal === 'REGULAR') badgeClass = 'status-regular';
-
-        card.innerHTML = `
-          <div class="rank-info">
-            <span class="rank-pos">${pos}</span>
-            <span class="rank-name">${eq.nome}</span>
-            <span class="${badgeClass}" style="font-size:13px; padding:2px 14px;">${eq.classFinal}</span>
-          </div>
-          <div class="rank-score">${eq.final.toFixed(2)}</div>
-        `;
-        rankContainer.appendChild(card);
-      });
-    }
-    renderRanking();
-
-    // tabela
-    const tbody = document.getElementById('tableBody');
-    function renderTable() {
-      tbody.innerHTML = '';
-      equipes.forEach(eq => {
-        const tr = document.createElement('tr');
-        const statusMap = (val) => {
-          if (val === 'ÓTIMO') return `<span class="status-otimo">ÓTIMO</span>`;
-          if (val === 'BOM') return `<span class="status-bom">BOM</span>`;
-          if (val === 'SUFICIENTE') return `<span class="status-suficiente">SUF</span>`;
-          if (val === 'REGULAR') return `<span class="status-regular">REG</span>`;
-          return val;
+        // Mapeamento de classificações para cores
+        const classMap = {
+            'ÓTIMO': 'status-otimo',
+            'BOM': 'status-bom',
+            'SUFICIENTE': 'status-suficiente',
+            'REGULAR': 'status-regular'
         };
-        tr.innerHTML = `
-          <td><strong>${eq.nome}</strong></td>
-          <td>${eq.cad.toFixed(2)}</td>
-          <td>${eq.acomp.toFixed(2)}</td>
-          <td><span class="score-tag">${eq.final.toFixed(2)}</span></td>
-          <td>${statusMap(eq.maisAcesso)}</td>
-          <td>${statusMap(eq.desenv)}</td>
-          <td>${statusMap(eq.gestante)}</td>
-          <td>${statusMap(eq.diabetes)}</td>
-          <td>${statusMap(eq.hipertensao)}</td>
-          <td>${statusMap(eq.idoso)}</td>
-          <td>${statusMap(eq.mulheres)}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-    renderTable();
-  })();
+
+        function renderStatus(value) {
+            const cls = classMap[value] || 'status-suficiente';
+            return `<span class="${cls}">${value}</span>`;
+        }
+
+        // Render eSF
+        const esfBody = document.getElementById('esfBody');
+        esfData.forEach(eq => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="equipe-nome">${eq.nome}</td>
+                <td>${eq.cad}</td>
+                <td>${eq.acomp}</td>
+                <td><span class="nota-cell">${eq.nota}</span></td>
+                <td>${renderStatus(eq.maisAcesso)}</td>
+                <td>${renderStatus(eq.desenv)}</td>
+                <td>${renderStatus(eq.gestante)}</td>
+                <td>${renderStatus(eq.diabetes)}</td>
+                <td>${renderStatus(eq.hipertensao)}</td>
+                <td>${renderStatus(eq.idoso)}</td>
+                <td>${renderStatus(eq.mulheres)}</td>
+            `;
+            esfBody.appendChild(tr);
+        });
+
+        // Render eSB
+        const esbBody = document.getElementById('esbBody');
+        // Classificações eSB baseadas no relatório
+        const esbClass = {
+            'ESB Assunção': { consulta: 'ÓTIMO', tratConcluido: 'ÓTIMO', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
+            'ESB Teteu': { consulta: 'REGULAR', tratConcluido: 'ÓTIMO', exodontia: 'ÓTIMO', escovacao: 'REGULAR', preventivos: 'REGULAR', atraumático: 'ÓTIMO' },
+            'ESB Lageiro Branco': { consulta: 'SUFICIENTE', tratConcluido: 'SUFICIENTE', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
+            'ESB Santa Teresinha': { consulta: 'ÓTIMO', tratConcluido: 'REGULAR', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' }
+        };
+
+        esbData.forEach(eq => {
+            const cls = esbClass[eq.nome] || {};
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="equipe-nome">${eq.nome}</td>
+                <td>${eq.consulta} ${renderStatus(cls.consulta || '')}</td>
+                <td>${eq.tratConcluido} ${renderStatus(cls.tratConcluido || '')}</td>
+                <td>${eq.exodontia} ${renderStatus(cls.exodontia || '')}</td>
+                <td>${eq.escovacao} ${renderStatus(cls.escovacao || '')}</td>
+                <td>${eq.preventivos} ${renderStatus(cls.preventivos || '')}</td>
+                <td>${eq.atraumático} ${renderStatus(cls.atraumático || '')}</td>
+            `;
+            esbBody.appendChild(tr);
+        });
+
+        // Render eMulti
+        const emultiBody = document.getElementById('emultiBody');
+        const emultiData = [
+            { nome: 'Equipe eMulti', media: '5,64', mediaClass: 'ÓTIMO', acoes: '0,32%', acoesClass: 'REGULAR' }
+        ];
+        emultiData.forEach(eq => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="equipe-nome">${eq.nome}</td>
+                <td>${eq.media} ${renderStatus(eq.mediaClass)}</td>
+                <td>${eq.acoes} ${renderStatus(eq.acoesClass)}</td>
+            `;
+            emultiBody.appendChild(tr);
+        });
+
+    })();
 </script>
 </body>
 </html>
