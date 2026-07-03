@@ -75,6 +75,87 @@
             color: #2a7de1;
         }
 
+        /* RANKING */
+        .ranking-section {
+            background: white;
+            border-radius: 28px;
+            padding: 20px 28px 24px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f7;
+            margin-bottom: 24px;
+        }
+
+        .ranking-section .ranking-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ranking-section .ranking-title i {
+            color: #f5b342;
+        }
+
+        .ranking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .rank-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 14px 18px;
+            border: 1px solid #e9edf3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.1s ease;
+        }
+
+        .rank-card:hover {
+            background: #f1f6fd;
+        }
+
+        .rank-card .rank-pos {
+            font-size: 20px;
+            font-weight: 700;
+            margin-right: 12px;
+            min-width: 32px;
+        }
+
+        .rank-card .rank-info {
+            flex: 1;
+        }
+
+        .rank-card .rank-name {
+            font-weight: 700;
+            color: #0b2b4a;
+            font-size: 15px;
+        }
+
+        .rank-card .rank-equipe {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .rank-card .rank-score {
+            font-weight: 700;
+            font-size: 18px;
+            color: #0b2b4a;
+            background: #e9edf3;
+            padding: 2px 14px;
+            border-radius: 60px;
+        }
+
+        .rank-card.ouro { border-left: 5px solid #f5b342; background: #fef9f0; }
+        .rank-card.prata { border-left: 5px solid #b0c4de; background: #f8faff; }
+        .rank-card.bronze { border-left: 5px solid #cd7f32; background: #fdf8f2; }
+        .rank-card.destaque { border-left: 5px solid #2a7de1; background: #f2f8ff; }
+
         /* ALERTAS em destaque */
         .alertas-destaque {
             background: #fef3e9;
@@ -188,7 +269,6 @@
             padding: 8px 12px 10px 12px;
             border-bottom: 2px solid #e2e8f0;
             background: #f8fafc;
-            border-radius: 8px 8px 0 0;
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
@@ -212,17 +292,6 @@
             font-weight: 700;
             color: #0b2b4a;
             white-space: nowrap;
-        }
-
-        .indicadores-table .equipe-tipo-badge {
-            font-size: 11px;
-            font-weight: 600;
-            background: #e9edf3;
-            padding: 2px 10px;
-            border-radius: 40px;
-            color: #475569;
-            margin-left: 8px;
-            display: inline-block;
         }
 
         .indicadores-table .nota-cell {
@@ -310,15 +379,6 @@
         .dot-suficiente { background: #b76e0a; }
         .dot-regular { background: #c8102e; }
 
-        .badge-equipe {
-            background: #e9edf3;
-            border-radius: 30px;
-            padding: 1px 12px;
-            font-weight: 600;
-            font-size: 11px;
-            color: #475569;
-        }
-
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -340,6 +400,9 @@
             .categoria-section {
                 padding: 16px;
             }
+            .ranking-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 600px) {
@@ -347,6 +410,9 @@
                 display: block;
                 overflow-x: auto;
                 white-space: nowrap;
+            }
+            .ranking-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -365,6 +431,17 @@
         </div>
         <div class="header-right">
             <i class="fas fa-chart-line"></i> 3 equipes com nota máxima
+        </div>
+    </div>
+
+    <!-- ===== RANKING ===== -->
+    <div class="ranking-section">
+        <div class="ranking-title">
+            <i class="fas fa-trophy"></i> Ranking das equipes
+            <span style="font-size:14px; font-weight:400; color:#64748b; margin-left:8px;">Nota final - Vínculo e Acompanhamento</span>
+        </div>
+        <div class="ranking-grid" id="rankingContainer">
+            <!-- renderizado via JS -->
         </div>
     </div>
 
@@ -391,24 +468,26 @@
                 <span class="categoria-sub">Equipes Saúde da Família</span>
             </div>
         </div>
-        <table class="indicadores-table">
-            <thead>
-                <tr>
-                    <th>Equipe</th>
-                    <th>Cadastros</th>
-                    <th>Acompanhamento</th>
-                    <th>Nota Final</th>
-                    <th>Mais Acesso</th>
-                    <th>Desenv. Infantil</th>
-                    <th>Gestante</th>
-                    <th>Diabetes</th>
-                    <th>Hipertensão</th>
-                    <th>Idoso</th>
-                    <th>Mulheres</th>
-                </tr>
-            </thead>
-            <tbody id="esfBody"></tbody>
-        </table>
+        <div style="overflow-x:auto;">
+            <table class="indicadores-table" id="esfTable">
+                <thead>
+                    <tr>
+                        <th>Equipe</th>
+                        <th>Cad.</th>
+                        <th>Acomp.</th>
+                        <th>Nota Final</th>
+                        <th>Mais Acesso</th>
+                        <th>Desenv. Infantil</th>
+                        <th>Gestante</th>
+                        <th>Diabetes</th>
+                        <th>Hipertensão</th>
+                        <th>Idoso</th>
+                        <th>Mulheres</th>
+                    </tr>
+                </thead>
+                <tbody id="esfBody"></tbody>
+            </table>
+        </div>
     </div>
 
     <!-- ==================== eSB ==================== -->
@@ -419,20 +498,22 @@
                 <span class="categoria-sub">Equipes Saúde Bucal</span>
             </div>
         </div>
-        <table class="indicadores-table">
-            <thead>
-                <tr>
-                    <th>Equipe</th>
-                    <th>1ª Consulta</th>
-                    <th>Trat. Concluído</th>
-                    <th>Taxa Exodontia</th>
-                    <th>Escov. Supervisionada</th>
-                    <th>Proc. Preventivos</th>
-                    <th>Trat. Atraumático</th>
-                </tr>
-            </thead>
-            <tbody id="esbBody"></tbody>
-        </table>
+        <div style="overflow-x:auto;">
+            <table class="indicadores-table" id="esbTable">
+                <thead>
+                    <tr>
+                        <th>Equipe</th>
+                        <th>1ª Consulta</th>
+                        <th>Trat. Concluído</th>
+                        <th>Taxa Exodontia</th>
+                        <th>Escov. Supervisionada</th>
+                        <th>Proc. Preventivos</th>
+                        <th>Trat. Atraumático</th>
+                    </tr>
+                </thead>
+                <tbody id="esbBody"></tbody>
+            </table>
+        </div>
     </div>
 
     <!-- ==================== eMulti ==================== -->
@@ -443,16 +524,18 @@
                 <span class="categoria-sub">Equipe Multiprofissional</span>
             </div>
         </div>
-        <table class="indicadores-table">
-            <thead>
-                <tr>
-                    <th>Equipe</th>
-                    <th>Média Atend./Cidadão</th>
-                    <th>Ações Interprofissionais</th>
-                </tr>
-            </thead>
-            <tbody id="emultiBody"></tbody>
-        </table>
+        <div style="overflow-x:auto;">
+            <table class="indicadores-table" id="emultiTable">
+                <thead>
+                    <tr>
+                        <th>Equipe</th>
+                        <th>Média Atend./Cidadão</th>
+                        <th>Ações Interprofissionais</th>
+                    </tr>
+                </thead>
+                <tbody id="emultiBody"></tbody>
+            </table>
+        </div>
     </div>
 
     <!-- legenda -->
@@ -470,22 +553,6 @@
 
 <script>
     (function() {
-        // Dados eSF
-        const esfData = [
-            { nome: 'Teteu', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
-            { nome: 'Assunção', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'BOM', desenv: 'SUFICIENTE', gestante: 'ÓTIMO', diabetes: 'ÓTIMO', hipertensao: 'BOM', idoso: 'BOM', mulheres: 'BOM' },
-            { nome: 'Santa Teresinha', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
-            { nome: 'Lageiro Branco', cad: '2,25', acomp: '3,50', nota: '5,75', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'SUFICIENTE' }
-        ];
-
-        // Dados eSB
-        const esbData = [
-            { nome: 'ESB Assunção', consulta: '4,31%', tratConcluido: '88,16%', exodontia: '1,14%', escovacao: '39,13%', preventivos: '67,35%', atraumático: '82,96%' },
-            { nome: 'ESB Teteu', consulta: '0,09%', tratConcluido: '350,00%', exodontia: '9,52%', escovacao: '0,00%', preventivos: '23,81%', atraumático: '46,15%' },
-            { nome: 'ESB Lageiro Branco', consulta: '0,75%', tratConcluido: '50,00%', exodontia: '2,17%', escovacao: '14,73%', preventivos: '79,22%', atraumático: '61,54%' },
-            { nome: 'ESB Santa Teresinha', consulta: '4,16%', tratConcluido: '10,59%', exodontia: '0,14%', escovacao: '22,71%', preventivos: '71,40%', atraumático: '27,80%' }
-        ];
-
         // Mapeamento de classificações para cores
         const classMap = {
             'ÓTIMO': 'status-otimo',
@@ -499,7 +566,55 @@
             return `<span class="${cls}">${value}</span>`;
         }
 
-        // Render eSF
+        // ========== Dados para o Ranking ==========
+        const rankingData = [
+            { nome: 'Teteu', nota: 10.00, tipo: 'eSF' },
+            { nome: 'Assunção', nota: 10.00, tipo: 'eSF' },
+            { nome: 'Santa Teresinha', nota: 10.00, tipo: 'eSF' },
+            { nome: 'Lageiro Branco', nota: 5.75, tipo: 'eSF' }
+        ];
+
+        // Ordenar por nota (decrescente)
+        const sortedRank = [...rankingData].sort((a, b) => b.nota - a.nota);
+
+        const rankContainer = document.getElementById('rankingContainer');
+        function renderRanking() {
+            rankContainer.innerHTML = '';
+            sortedRank.forEach((eq, idx) => {
+                const card = document.createElement('div');
+                card.className = 'rank-card';
+                if (idx === 0) card.classList.add('ouro');
+                else if (idx === 1) card.classList.add('prata');
+                else if (idx === 2) card.classList.add('bronze');
+                else if (eq.nota >= 9.0) card.classList.add('destaque');
+
+                let pos = '';
+                if (idx === 0) pos = '🥇';
+                else if (idx === 1) pos = '🥈';
+                else if (idx === 2) pos = '🥉';
+                else pos = `${idx+1}º`;
+
+                card.innerHTML = `
+                    <span class="rank-pos">${pos}</span>
+                    <div class="rank-info">
+                        <div class="rank-name">${eq.nome}</div>
+                        <div class="rank-equipe">${eq.tipo}</div>
+                    </div>
+                    <span class="rank-score">${eq.nota.toFixed(2)}</span>
+                `;
+                rankContainer.appendChild(card);
+            });
+        }
+        renderRanking();
+
+        // ========== eSF ==========
+        const esfData = [
+            { nome: 'Teteu', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
+            { nome: 'Assunção', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'BOM', desenv: 'SUFICIENTE', gestante: 'ÓTIMO', diabetes: 'ÓTIMO', hipertensao: 'BOM', idoso: 'BOM', mulheres: 'BOM' },
+            { nome: 'Santa Teresinha', cad: '3,00', acomp: '7,00', nota: '10,00', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'BOM' },
+            { nome: 'Lageiro Branco', cad: '2,25', acomp: '3,50', nota: '5,75', maisAcesso: 'ÓTIMO', desenv: 'SUFICIENTE', gestante: 'BOM', diabetes: 'ÓTIMO', hipertensao: 'ÓTIMO', idoso: 'ÓTIMO', mulheres: 'SUFICIENTE' }
+        ];
+
         const esfBody = document.getElementById('esfBody');
         esfData.forEach(eq => {
             const tr = document.createElement('tr');
@@ -519,23 +634,30 @@
             esfBody.appendChild(tr);
         });
 
-        // Render eSB
-        const esbBody = document.getElementById('esbBody');
-        // Classificações eSB baseadas no relatório
+        // ========== eSB ==========
+        const esbData = [
+            { nome: 'ESB Assunção', consulta: '4,31%', trat: '88,16%', exodontia: '1,14%', escovacao: '39,13%', preventivos: '67,35%', atraumático: '82,96%' },
+            { nome: 'ESB Teteu', consulta: '0,09%', trat: '350,00%', exodontia: '9,52%', escovacao: '0,00%', preventivos: '23,81%', atraumático: '46,15%' },
+            { nome: 'ESB Lageiro Branco', consulta: '0,75%', trat: '50,00%', exodontia: '2,17%', escovacao: '14,73%', preventivos: '79,22%', atraumático: '61,54%' },
+            { nome: 'ESB Santa Teresinha', consulta: '4,16%', trat: '10,59%', exodontia: '0,14%', escovacao: '22,71%', preventivos: '71,40%', atraumático: '27,80%' }
+        ];
+
+        // Classificações eSB
         const esbClass = {
-            'ESB Assunção': { consulta: 'ÓTIMO', tratConcluido: 'ÓTIMO', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
-            'ESB Teteu': { consulta: 'REGULAR', tratConcluido: 'ÓTIMO', exodontia: 'ÓTIMO', escovacao: 'REGULAR', preventivos: 'REGULAR', atraumático: 'ÓTIMO' },
-            'ESB Lageiro Branco': { consulta: 'SUFICIENTE', tratConcluido: 'SUFICIENTE', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
-            'ESB Santa Teresinha': { consulta: 'ÓTIMO', tratConcluido: 'REGULAR', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' }
+            'ESB Assunção': { consulta: 'ÓTIMO', trat: 'ÓTIMO', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
+            'ESB Teteu': { consulta: 'REGULAR', trat: 'ÓTIMO', exodontia: 'ÓTIMO', escovacao: 'REGULAR', preventivos: 'REGULAR', atraumático: 'ÓTIMO' },
+            'ESB Lageiro Branco': { consulta: 'SUFICIENTE', trat: 'SUFICIENTE', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' },
+            'ESB Santa Teresinha': { consulta: 'ÓTIMO', trat: 'REGULAR', exodontia: 'REGULAR', escovacao: 'ÓTIMO', preventivos: 'ÓTIMO', atraumático: 'ÓTIMO' }
         };
 
+        const esbBody = document.getElementById('esbBody');
         esbData.forEach(eq => {
             const cls = esbClass[eq.nome] || {};
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td class="equipe-nome">${eq.nome}</td>
                 <td>${eq.consulta} ${renderStatus(cls.consulta || '')}</td>
-                <td>${eq.tratConcluido} ${renderStatus(cls.tratConcluido || '')}</td>
+                <td>${eq.trat} ${renderStatus(cls.trat || '')}</td>
                 <td>${eq.exodontia} ${renderStatus(cls.exodontia || '')}</td>
                 <td>${eq.escovacao} ${renderStatus(cls.escovacao || '')}</td>
                 <td>${eq.preventivos} ${renderStatus(cls.preventivos || '')}</td>
@@ -544,11 +666,12 @@
             esbBody.appendChild(tr);
         });
 
-        // Render eMulti
-        const emultiBody = document.getElementById('emultiBody');
+        // ========== eMulti ==========
         const emultiData = [
-            { nome: 'Equipe eMulti', media: '5,64', mediaClass: 'ÓTIMO', acoes: '0,32%', acoesClass: 'REGULAR' }
+            { nome: 'eMulti', media: '5,64', mediaClass: 'ÓTIMO', acoes: '0,32%', acoesClass: 'REGULAR' }
         ];
+
+        const emultiBody = document.getElementById('emultiBody');
         emultiData.forEach(eq => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
